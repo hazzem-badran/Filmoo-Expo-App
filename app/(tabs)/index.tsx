@@ -1,15 +1,30 @@
-import { Text, View } from "react-native";
+import { icons } from "@/constants/icons";
+import { images } from "@/constants/images";
+import { Image, ScrollView, Text, View } from "react-native";
+import SearchBar from "@/components/SearchBar";
+import { useRouter } from "expo-router";
 
 export default function Index() {
+  const router = useRouter();
   return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <Text className="text-green-500">asddasfdfsaffn.</Text>
+    <View className="flex-1 bg-primary">
+      <Image source={images.bg} className="absolute w-full" />
+      <ScrollView
+        className="flex-1 px-5"
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={{
+          paddingBottom: 10,
+          minHeight: "100%",
+        }}
+      >
+        <Image source={icons.logo} className="w-12 h-10 mt-20 mb-5 mx-auto" />
+        <View className="flex-1 mt-5">
+          <SearchBar
+            placeholder="Search for a movie"
+            onPress={() => router.push("/search")}
+          />
+        </View>
+      </ScrollView>
     </View>
   );
 }
