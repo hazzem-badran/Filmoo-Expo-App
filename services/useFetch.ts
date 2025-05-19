@@ -26,7 +26,7 @@ const useFetch = <T>(fetchFunction: () => Promise<T>, autoFetch = true) => {
     setError(null);
   }
 
-  useEffect(() => {
+  useEffect(() => { 
     if (autoFetch) {
       fetchData();
     }
