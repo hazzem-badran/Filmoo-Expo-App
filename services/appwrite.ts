@@ -2,12 +2,12 @@ import { Client, Databases, ID, Query } from "react-native-appwrite";
 
 // track the seaarches made by a user
 
-const DATABASE_ID = process.env.EXPO_APPWRITE_DATABASE_ID!;
-const COLLECTION_ID = process.env.EXPO_APPWRITE_COLLECTION_ID!;
+const DATABASE_ID = process.env.EXPO_PUBLIC_APPWRITE_DATABASE_ID!;
+const COLLECTION_ID = process.env.EXPO_PUBLIC_APPWRITE_COLLECTION_ID!;
 
 const client = new Client()
   .setEndpoint("https://cloud.appwrite.io/v1") // EXPO_APPWRITE_ENDPOINT
-  .setProject(process.env.EXPO_APPWRITE_PROJECT_ID!);
+  .setProject(process.env.EXPO_PUBLIC_APPWRITE_ID!);
 
 const databases = new Databases(client);
 
