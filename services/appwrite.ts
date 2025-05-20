@@ -46,12 +46,23 @@ export const updateSearchCount = async (query: string, movie: Movie) => {
     console.error("Error updating search count:", error);
   }
 
-
-
-
-
-
   // check if a record of that search has already been stored
   // if a document is found incremet th searchCount filed
   // if no document is found create ane doucument in appwrite database => 1
 };
+
+export const getTrendingMovies = async (): Promise<TrendingMovie[] | undefined> => {
+
+  try {
+    const result = await databases.listDocuments(DATABASE_ID, COLLECTION_ID, [
+    Query.limit(6),
+    Query.orderDesc('count')
+  ]);
+
+  return result.documents as unknown as TrendingMovie[];
+
+  }catch(err) {
+    console.log(err) 
+    return undefined
+  }
+}
