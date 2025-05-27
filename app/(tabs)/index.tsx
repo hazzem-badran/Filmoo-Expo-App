@@ -1,5 +1,12 @@
+import MovieCard from "@/components/MovieCard";
+import SearchBar from "@/components/SearchBar";
+import TrendingCard from "@/components/TrendingCard";
 import { icons } from "@/constants/icons";
 import { images } from "@/constants/images";
+import { fetchMovies } from "@/services/api";
+import { getTrendingMovies } from "@/services/appwrite";
+import useFetch from "@/services/useFetch";
+import { useRouter } from "expo-router";
 import {
   ActivityIndicator,
   FlatList,
@@ -8,13 +15,6 @@ import {
   Text,
   View,
 } from "react-native";
-import SearchBar from "@/components/SearchBar";
-import { useRouter } from "expo-router";
-import useFetch from "@/services/useFetch";
-import { fetchMovies } from "@/services/api";
-import MovieCard from "@/components/MovieCard";
-import { getTrendingMovies } from "@/services/appwrite";
-import TrendingCard from "@/components/TrendingCard";
 
 export default function Index() {
   const router = useRouter();
@@ -32,7 +32,9 @@ export default function Index() {
   } = useFetch(() => fetchMovies({ query: "" }), true);
   return (
     <View className="flex-1 bg-primary">
-      <Image source={images.bg} className="absolute w-full h-full" />
+      <Image source={images.bg} className="absolute t-0 w-full h-full"
+      resizeMode="cover"
+      />
       <ScrollView
         className="flex-1 px-5"
         showsVerticalScrollIndicator={false}
@@ -41,12 +43,13 @@ export default function Index() {
           minHeight: "100%",
         }}
       >
-        <Image source={icons.logo} className="w-12 h-10 mt-20 mb-5 mx-auto" />
+        <Image source={icons.logo} className="w-12 h-12 mt-20 mb-5 mx-auto"
+        />
 
         {loadingMovies || trendingLoading ? (
           <ActivityIndicator
             size="large"
-            color="#0000ff"
+            color="#f0be44"
             className="mt-10 self-center"
           />
         ) : errorMovies || trendingError ? (
