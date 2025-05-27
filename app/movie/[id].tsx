@@ -10,9 +10,14 @@ import { useLocalSearchParams, useRouter } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import { icons } from "@/constants/icons";
-// import useFetch from "@/services/usefetch";
 import { fetchMovieDetails } from "@/services/api";
 import useFetch from "@/services/useFetch";
+import { useEffect, useState } from "react";
+import {
+  isFavoriteMovie,
+  removeFavoriteMovie,
+  saveFavoriteMovie,
+} from "@/services/appwrite";
 
 interface MovieInfoProps {
   label: string;
@@ -31,10 +36,36 @@ const MovieInfo = ({ label, value }: MovieInfoProps) => (
 const Details = () => {
   const router = useRouter();
   const { id } = useLocalSearchParams();
+  const [liked, setLiked] = useState(false);
 
   const { data: movie, loading } = useFetch(() =>
     fetchMovieDetails(id as string)
   );
+
+  const handleFavorite = async () => {
+    if (!movie) return;
+    if (liked) {
+      await removeFavoriteMovie(movie.id);
+      setLiked(false);
+    } else {
+      await saveFavoriteMovie(movie);
+      setLiked(true);
+    }
+  };
+
+  useEffect(() => {
+    if (id) {
+      const movieId =
+        typeof id === "string"
+          ? Number(id)
+          : Array.isArray(id)
+          ? Number(id[0])
+          : undefined;
+      if (movieId) {
+        isFavoriteMovie(movieId).then(setLiked);
+      }
+    }
+  }, [id]);
 
   if (loading)
     return (
@@ -55,10 +86,13 @@ const Details = () => {
             resizeMode="stretch"
           />
 
-          <TouchableOpacity className="absolute bottom-5 right-5 rounded-full size-14 bg-white flex items-center justify-center">
+          <TouchableOpacity
+            className="absolute bottom-5 right-5 rounded-full size-14 bg-white flex items-center justify-center"
+            onPress={handleFavorite}
+          >
             <Image
-              source={icons.play}
-              className="w-6 h-7 ml-1"
+              source={liked ? icons.heart : icons.heart_outline}
+              className="w-7 h-7 ml-0"
               resizeMode="stretch"
             />
           </TouchableOpacity>

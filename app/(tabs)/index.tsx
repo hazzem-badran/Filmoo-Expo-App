@@ -32,7 +32,7 @@ export default function Index() {
   } = useFetch(() => fetchMovies({ query: "" }), true);
   return (
     <View className="flex-1 bg-primary">
-      <Image source={images.bg} className="absolute w-full" />
+      <Image source={images.bg} className="absolute w-full h-full" />
       <ScrollView
         className="flex-1 px-5"
         showsVerticalScrollIndicator={false}

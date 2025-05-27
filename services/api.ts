@@ -48,3 +48,24 @@ export const fetchMovieDetails = async (
     throw error;
   }
 };
+
+export const fetchLovedMovies = async (): Promise<MovieDetails[]> => {  
+  try {
+    const endpoint = `${TMDB_CONFIG.BASE_URL}/account/{account_id}/favorite/movies?api_key=${TMDB_CONFIG.API_KEY}&language=en-US&sort_by=created_at.asc`;
+
+    const response = await fetch(endpoint, {
+      method: "GET",
+      headers: TMDB_CONFIG.headers,
+    });
+
+    if (!response.ok) {
+      //@ts-ignore
+      throw new Error("Failed to fetch loved movies", response.statusText);
+    }
+    const data = await response.json();
+    return data.results;
+  } catch (error) {
+    console.log(error)
+    throw error;
+  }
+}
