@@ -1,3 +1,6 @@
+import ErrorState from "@/components/ErrorState";
+import LoadingState from "@/components/LoadingState";
+import Logo from "@/components/logo";
 import MovieCard from "@/components/MovieCard";
 import SearchBar from "@/components/SearchBar";
 import { icons } from "@/constants/icons";
@@ -38,16 +41,24 @@ const Search = () => {
     }
   }, [movies]);
 
+
+
+  const MemoMovieCard = React.memo(MovieCard);
+  const keyExtractor = (item: { id: number | string }) => item.id.toString();
+  const renderItem = ({ item }: any) => <MemoMovieCard {...item} />;
+
   return (
     <View className="flex-1 bg-primary">
-      <Image source={images.bg} className="absolute t-0 w-full h-full"
-      resizeMode="cover"
+      <Image
+        source={images.bg}
+        className="absolute t-0 w-full h-full"
+        resizeMode="cover"
       />
 
       <FlatList
         data={movies}
-        renderItem={({ item }) => <MovieCard {...item} />}
-        keyExtractor={(item) => item.id.toString()}
+        renderItem={renderItem}
+        keyExtractor={keyExtractor}
         className="px-5"
         numColumns={3}
         columnWrapperStyle={{
@@ -60,9 +71,8 @@ const Search = () => {
         }}
         ListHeaderComponent={
           <>
-            <View className="flex-row items-center justify-center mt-20">
-              <Image source={icons.logo} className="w-12 h-12" />
-            </View>
+            <Logo />
+
             <View className="my-5">
               <SearchBar
                 placeholder="Search movies ..."
@@ -71,19 +81,9 @@ const Search = () => {
               />
             </View>
 
-            {loading && (
-              <ActivityIndicator
-                size="large"
-                color="#f0be44"
-                className="my-3"
-              />
-            )}
+            {loading && <LoadingState />}
 
-            {error && (
-              <Text className="text-red-500 text-xl px-5 py-3 text-center">
-                {error?.message}
-              </Text>
-            )}
+            {error && <ErrorState message={error?.message} />}
 
             {!loading &&
               !error &&
