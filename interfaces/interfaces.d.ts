@@ -9,6 +9,7 @@ interface Movie {
   overview: string;
   popularity: number;
   poster_path: string;
+  poster_url: string;
   release_date: string;
   video: boolean;
   vote_average: number;
@@ -24,6 +25,7 @@ interface TrendingMovie {
 }
 
 interface MovieDetails {
+  [x: string]: string | undefined;
   adult: boolean;
   backdrop_path: string | null;
   belongs_to_collection: {

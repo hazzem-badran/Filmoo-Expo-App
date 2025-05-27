@@ -14,31 +14,25 @@ const Save = () => {
   } = useFetch(() => getFavoriteMovies(), true);
 
   return (
-    <View className="bg-primary flex-1 ">
-      {/* <Image
+    <View className="flex-1 bg-primary">
+      <Image
         source={images.bg}
-        className="flex-1 absolute w-full z-0"
+        className="absolute t-0 w-full h-full"
         resizeMode="cover"
-      /> */}
-      <Image source={images.bg} className="absolute flex-1 z-0 t-0 w-full h-full"
-      resizeMode="cover"
       />
 
       <FlatList
         data={movies}
         renderItem={({ item }) => (
-          <FavoriteCard title={item.title} poster_url={item?.poster_path ?? ""} />
+          <FavoriteCard poster_url={item.poster_url} title={item.title} />
         )}
-        keyExtractor={(item) => item.id?.toString()}
-        className="px-5"
-        numColumns={2}
-        showsVerticalScrollIndicator={false}
-        columnWrapperClassName="justifuy-center my-4 gap-4"
-        contentContainerClassName="pb-10"
+        keyExtractor={(item, index) => item.id?.toString() || index.toString()}
+        // className="px-5 "
+        className="mt-2 mb-32"
         ListHeaderComponent={
           <>
             <View className="flex-row items-center justify-center mt-20">
-              <Image source={icons.logo} className="w-12 h-1w2" />
+              <Image source={icons.logo} className="w-12 h-12" />
             </View>
 
             {loading && (
@@ -56,7 +50,7 @@ const Save = () => {
             )}
 
             {!loading && !error && movies && movies.length >= 0 && (
-              <Text className="text-lg text-white font-bold mt-6">
+              <Text className="text-lg text-white font-bold my-6">
                 Your <Text className="text-accent"> favorite</Text> movies
               </Text>
             )}
