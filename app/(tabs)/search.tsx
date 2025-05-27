@@ -40,10 +40,8 @@ const Search = () => {
 
   return (
     <View className="flex-1 bg-primary">
-      <Image
-        source={images.bg}
-        className="flex-1 absolute w-full z-0"
-        resizeMode="cover"
+      <Image source={images.bg} className="absolute t-0 w-full h-full"
+      resizeMode="cover"
       />
 
       <FlatList
@@ -63,7 +61,7 @@ const Search = () => {
         ListHeaderComponent={
           <>
             <View className="flex-row items-center justify-center mt-20">
-              <Image source={icons.logo} className="w-12 h-10" />
+              <Image source={icons.logo} className="w-12 h-12" />
             </View>
             <View className="my-5">
               <SearchBar
@@ -76,7 +74,7 @@ const Search = () => {
             {loading && (
               <ActivityIndicator
                 size="large"
-                color="#0000ff"
+                color="#f0be44"
                 className="my-3"
               />
             )}

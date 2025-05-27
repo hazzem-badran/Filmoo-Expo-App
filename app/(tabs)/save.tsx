@@ -1,10 +1,10 @@
-import { View, Text, Image, FlatList, ActivityIndicator } from "react-native";
-import React, { use } from "react";
+import FavoriteCard from "@/components/FavoriteCard";
 import { icons } from "@/constants/icons";
 import { images } from "@/constants/images";
-import useFetch from "@/services/useFetch";
 import { getFavoriteMovies } from "@/services/appwrite";
-import FavoriteCard from "@/components/FavoriteCard";
+import useFetch from "@/services/useFetch";
+import React from "react";
+import { ActivityIndicator, FlatList, Image, Text, View } from "react-native";
 
 const Save = () => {
   const {
@@ -15,10 +15,13 @@ const Save = () => {
 
   return (
     <View className="bg-primary flex-1 ">
-      <Image
+      {/* <Image
         source={images.bg}
         className="flex-1 absolute w-full z-0"
         resizeMode="cover"
+      /> */}
+      <Image source={images.bg} className="absolute flex-1 z-0 t-0 w-full h-full"
+      resizeMode="cover"
       />
 
       <FlatList
@@ -35,13 +38,13 @@ const Save = () => {
         ListHeaderComponent={
           <>
             <View className="flex-row items-center justify-center mt-20">
-              <Image source={icons.logo} className="w-12 h-10" />
+              <Image source={icons.logo} className="w-12 h-1w2" />
             </View>
 
             {loading && (
               <ActivityIndicator
                 size="large"
-                color="#0000ff"
+                color="#f0be44"
                 className="my-3"
               />
             )}
