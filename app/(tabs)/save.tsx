@@ -13,6 +13,8 @@ const Save = () => {
     error,
   } = useFetch(() => getFavoriteMovies(), true);
 
+  console.log(movies, "Favorite movies data");
+
   return (
     <View className="flex-1 bg-primary">
       <Image
@@ -24,11 +26,14 @@ const Save = () => {
       <FlatList
         data={movies}
         renderItem={({ item }) => (
-          <FavoriteCard poster_url={item.poster_url} title={item.title} />
+          <FavoriteCard
+            poster_url={item.poster_url}
+            title={item.title} 
+            id={item?.movie_id?.toString() ?? ""}
+          />
         )}
         keyExtractor={(item, index) => item.id?.toString() || index.toString()}
-        // className="px-5 "
-        className="mt-2 mb-32"
+        className="mt-2"
         ListHeaderComponent={
           <>
             <View className="flex-row items-center justify-center mt-20">
@@ -50,7 +55,7 @@ const Save = () => {
             )}
 
             {!loading && !error && movies && movies.length >= 0 && (
-              <Text className="text-lg text-white font-bold my-6">
+              <Text className="text-lg text-white font-bold px-5 my-6">
                 Your <Text className="text-accent"> favorite</Text> movies
               </Text>
             )}
