@@ -1,10 +1,15 @@
+import ErrorState from "@/components/ErrorState";
 import FavoriteCard from "@/components/FavoriteCard";
-import { icons } from "@/constants/icons";
+import LoadingState from "@/components/LoadingState";
+import Logo from "@/components/logo";
 import { images } from "@/constants/images";
 import { getFavoriteMovies } from "@/services/appwrite";
 import useFetch from "@/services/useFetch";
-import React from "react";
-import { ActivityIndicator, FlatList, Image, Text, View } from "react-native";
+import React, { use, useCallback } from "react";
+import { FlatList, Image, Text, View } from "react-native";
+
+const MemoFavoriteCard = React.memo(FavoriteCard);
+
 
 const Save = () => {
   const {
@@ -13,7 +18,21 @@ const Save = () => {
     error,
   } = useFetch(() => getFavoriteMovies(), true);
 
-  console.log(movies, "Favorite movies data");
+  const renderItem = useCallback(
+    ({ item }: any) => (
+      <MemoFavoriteCard
+        poster_url={item.poster_url}
+        title={item.title}
+        id={item?.movie_id?.toString() ?? ""}
+      />
+    ),
+    []
+  );
+
+  const keyExtractor = useCallback(
+    (item: { id: number | string }) => item?.id?.toString(),
+    []
+  );
 
   return (
     <View className="flex-1 bg-primary">
@@ -25,34 +44,17 @@ const Save = () => {
 
       <FlatList
         data={movies}
-        renderItem={({ item }) => (
-          <FavoriteCard
-            poster_url={item.poster_url}
-            title={item.title} 
-            id={item?.movie_id?.toString() ?? ""}
-          />
-        )}
-        keyExtractor={(item, index) => item.id?.toString() || index.toString()}
-        className="mt-2"
+        renderItem={renderItem}
+        keyExtractor={keyExtractor}
+        // className="mt-2"
+
         ListHeaderComponent={
           <>
-            <View className="flex-row items-center justify-center mt-20">
-              <Image source={icons.logo} className="w-12 h-12" />
-            </View>
+            <Logo />
 
-            {loading && (
-              <ActivityIndicator
-                size="large"
-                color="#f0be44"
-                className="my-3"
-              />
-            )}
+            {loading && <LoadingState />}
 
-            {error && (
-              <Text className="text-red-500 text-xl px-5 py-3 text-center">
-                {error?.message}
-              </Text>
-            )}
+            {error && <ErrorState message={error?.message} />}
 
             {!loading && !error && movies && movies.length >= 0 && (
               <Text className="text-lg text-white font-bold px-5 my-6">
@@ -70,6 +72,7 @@ const Save = () => {
             </View>
           ) : null
         }
+        contentContainerStyle={{ paddingBottom: 118 }}
       />
     </View>
   );
