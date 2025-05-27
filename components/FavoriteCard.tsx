@@ -1,19 +1,22 @@
+import { Link } from "expo-router";
 import React from "react";
 import { Image, Text, TouchableOpacity, View } from "react-native";
 
 
 type FavoriteCardProps = {
+  id: string;
   poster_url?: string;
   title: string;
 };
 
-const FavoriteCard = ({
+const FavoriteCard = ({ 
+  id,
   poster_url,
   title,
 }: FavoriteCardProps) => {
-  console.log("poster_url:", poster_url);
 
   return (
+    <Link href={`/movie/${id}`} asChild>
     <TouchableOpacity
       activeOpacity={0.85}
       style={{
@@ -48,6 +51,7 @@ const FavoriteCard = ({
         </Text>
       </View>
     </TouchableOpacity>
+    </Link>
   );
 };
 
