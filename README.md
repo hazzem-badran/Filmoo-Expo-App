@@ -1,50 +1,45 @@
-# Welcome to your Expo app 👋
+# Filmoo RN
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+**Filmoo RN** is a movie app built with [React Native](https://reactnative.dev/) and [Expo](https://expo.dev/) that allows users to browse the latest movies, search for them, and save their favorite movies. The app relies on the TMDB API for fetching movie data and uses Appwrite to manage user data and favorite movies.
 
-## Get started
+## Features
 
-1. Install dependencies
+- Browse the latest and most popular movies.
+- Easily search for movies.
+- Save favorite movies to a personal list.
+- Modern and user-friendly interface.
+- Dark mode support.
+- Store user data and favorites using Appwrite.
 
-   ```bash
-   npm install
-   ```
+## Technologies Used
 
-2. Start the app
+- **React Native** and **Expo** for app development.
+- **Tailwind CSS** (via NativeWind) for styling.
+- **TMDB API** for fetching movie data.
+- **Appwrite** for data and favorites management.
+- **TypeScript** to ensure code quality.
 
-   ```bash
-   npx expo start
-   ```
+## Getting Started
 
-In the output, you'll find options to open the app in a
+1. Make sure you have Node.js and npm installed.
+2. Install dependencies:
+3. Create a `.env` file and add your API keys (TMDB and Appwrite).
+4. Run the app:
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+## Project Structure
 
-## Get a fresh project
+- `app/` : App screens.
+- `components/` : UI components.
+- `services/` : Data fetching and Appwrite services.
+- `constants/` : Static icons and images.
+- `interfaces/` and `types/` : TypeScript definitions.
 
-When you're ready, run:
+## Contribution
 
-```bash
-npm run reset-project
-```
+Contributions are welcome! Feel free to open issues or pull requests for improvements or fixes.
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+---
 
-## Learn more
+This project is developed for educational and experimental purposes.
 
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
