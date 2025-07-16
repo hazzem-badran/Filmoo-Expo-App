@@ -19,6 +19,16 @@
 - **Appwrite** for data and favorites management.
 - **TypeScript** to ensure code quality.
 
+## App Screenshots
+
+<p align="center">
+  <img src="./assets/images/screenshots/app1.png" width="22%" style="margin: 0 1%;"/>
+  <img src="./assets/images/screenshots/app2.png" width="22%" style="margin: 0 1%;"/>
+  <img src="./assets/images/screenshots/app4.png" width="22%" style="margin: 0 1%;"/>
+  <img src="./assets/images/screenshots/app5.png" width="22%" style="margin: 0 1%;"/>
+  <img src="./assets/images/screenshots/app6.png" width="22%" style="margin: 0 1%;"/>
+  <img src="./assets/images/screenshots/app7.png" width="22%" style="margin: 0 1%;"/>
+  </p>
 ## Getting Started
 
 1. Make sure you have Node.js and npm installed.
