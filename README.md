@@ -2,6 +2,11 @@
 
 **Filmoo RN** is a movie app built with [React Native](https://reactnative.dev/) and [Expo](https://expo.dev/) that allows users to browse the latest movies, search for them, and save their favorite movies. The app relies on the TMDB API for fetching movie data and uses Appwrite to manage user data and favorite movies.
 
+<div style="display: flex; flex-direction: 'row';">
+<img src="./assets/images/screenshots/thumbnail.png"  height=30%>
+</div>
+
+
 ## Features
 
 - Browse the latest and most popular movies.
