@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "filmoo-rn-v1",
-    "slug": "filmoo-rn-v1",
+    "name": "Filmoo",
+    "slug": "Filmoo",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/logo.png",
