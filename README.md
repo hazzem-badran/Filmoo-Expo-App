@@ -34,6 +34,7 @@
   <img src="./assets/images/screenshots/app6.png" width="22%" style="margin: 0 1%;"/>
   <img src="./assets/images/screenshots/app7.png" width="22%" style="margin: 0 1%;"/>
   </p>
+  
 ## Getting Started
 
 1. Make sure you have Node.js and npm installed.
